@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TODO App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./styles.css" />
+
+</head>
+
+<body>
+    <div class="container center">
+        <h1 class="center title">My TODO App</h1>
+        <hr/>
+        <div class="flow-right controls">
+            <button type="button" class="btn btn-primary">
+                Item count:
+                <span class="badge badge-light" id="item-count">0</span>
+            </button>
+            <button type="button" class="btn btn-primary">
+                Unchecked count:
+                <span class="badge badge-light" id="unchecked-count">0</span>
+            </button>
+        </div>
+        <hr/>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="todo-text" placeholder="Enter Text ..." aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" onClick="newTodo()">New TODO</button>
+            </div>
+        </div>
+        <div>
+            <ul id="todo-list" class="todo-list"></ul>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
