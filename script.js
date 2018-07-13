@@ -5,15 +5,20 @@ const classNames = {
   TODO_DELETE: 'todo-delete'
 };
 
+const countItem = document.getElementById('item-count');
+const countChecked = document.getElementById('unchecked-count');
 let itemCount = 0;
+let checkedCount = 0;
 
 // Add a "checked" symbol when clicking on a list item
 const list = document.querySelector('ul');
 list.addEventListener('click', event => {
   if (event.target.tagName === 'LI') {
     event.target.classList.toggle('checked');
-    itemCount--;
-    getItemCount('unchecked-count');
+    if (checkedCount > 0) {
+      checkedCount--;
+      countChecked.innerText = checkedCount.toString();
+    }
   }
 });
 
@@ -22,13 +27,15 @@ newTodo = () => {
   const li = document.createElement('li');
   const inputTodo = document.getElementById(classNames.TODO_TEXT).value;
   const text = document.createTextNode(inputTodo);
+
   li.appendChild(text);
   document.getElementById(classNames.TODO_TEXT).value = '';
 
   // increment item coount
   itemCount++;
-  getItemCount('item-count');
-  getItemCount('unchecked-count');
+  checkedCount++;
+  countItem.innerText = itemCount.toString();
+  countChecked.innerText = checkedCount.toString();
 
   // add a close button to the item list
   const span = document.createElement('SPAN');
@@ -43,15 +50,13 @@ newTodo = () => {
   for (let i = 0; i < closeButton.length; i++) {
     closeButton[i].onclick = () => {
       const listItem = closeButton[i].parentElement;
-      console.log(listItem);
       listItem.style.display = 'none';
       itemCount--;
-      getItemCount('item-count');
+      countItem.innerText = itemCount.toString();
+      if (checkedCount > 0) {
+        checkedCount--;
+        countChecked.innerText = checkedCount.toString();
+      }
     };
   }
-};
-
-getItemCount = id => {
-  const count = document.getElementById(id);
-  count.innerText = itemCount.toString();
 };
